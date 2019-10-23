@@ -38,15 +38,7 @@ def get_parser():
         metavar="FILE",
         help="path to config file",
     )
-    parser.add_argument("--webcam", action="store_true", help="Take inputs from webcam.")
-    parser.add_argument("--video-input", help="Path to video file.")
-    parser.add_argument("--input", nargs="+", help="A list of space separated input images")
-    parser.add_argument(
-        "--output",
-        help="A file or directory to save output visualizations. "
-        "If not given, will show output in an OpenCV window.",
-    )
-
+   
     parser.add_argument(
         "--confidence-threshold",
         type=float,
