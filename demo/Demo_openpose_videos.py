@@ -38,7 +38,8 @@ def get_parser():
         metavar="FILE",
         help="path to config file",
     )
-   
+    
+    
     parser.add_argument(
         "--confidence-threshold",
         type=float,
@@ -66,31 +67,23 @@ if __name__ == "__main__":
     demo = VisualizationDemo(cfg)
     f = open("/mnt/datasets/vlog/list.txt", "r")
     for x in f:
+        print(x)
         
         video = cv2.VideoCapture("/mnt/datasets/vlog/"+x[:-1])
-        if args.output:
-           
-            
-            fourcc = cv2.VideoWriter_fourcc(*'XVID')
-            output_file="/mnt/datasets/vlog/"+x[:-8]+"with_object_detection"+".avi"
-            out = cv2.VideoWriter(output_file,fourcc, 20.0, (256,256))
-            while(video.isOpened()):
-                ret,frame = video.read()
-               
-                if ret==True:
-                    predictions, visualized_output = demo.run_on_image(frame)
-            
-                
-                
-                
-              
-                    out.write(visualized_output.get_image()[:, :, ::-1])
-                    if cv2.waitKey(1) & 0xFF == ord('q'):
-                        break
-                else:
-                    break 
-            video.release()
-            out.release()
-            cv2.destroyAllWindows()   
+        fourcc = cv2.VideoWriter_fourcc(*'XVID')
+        output_file="/mnt/datasets/vlog/"+x[:-8]+"with_object_detection"+".avi"
+        out = cv2.VideoWriter(output_file,fourcc, 20.0, (256,256))
+        while(video.isOpened()):
+            ret,frame = video.read()
+            if ret==True:
+                predictions, visualized_output = demo.run_on_image(frame)
+                out.write(visualized_output.get_image()[:, :, ::-1])
+                if cv2.waitKey(1) & 0xFF == ord('q'):
+                    break
+            else:
+                break 
+        video.release()
+        out.release()
+        cv2.destroyAllWindows()   
 
 
