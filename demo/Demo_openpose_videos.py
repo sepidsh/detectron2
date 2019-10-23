@@ -72,7 +72,7 @@ if __name__ == "__main__":
            
             
             fourcc = cv2.VideoWriter_fourcc(*'XVID')
-            output_file="/mnt/datasets/vlog/"+x[:-7]+"with_object_detection"+".avi"
+            output_file="/mnt/datasets/vlog/"+x[:-8]+"with_object_detection"+".avi"
             out = cv2.VideoWriter(output_file,fourcc, 20.0, (256,256))
             while(video.isOpened()):
                 ret,frame = video.read()
